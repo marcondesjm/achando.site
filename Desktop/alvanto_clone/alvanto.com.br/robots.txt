@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /previa/
+
+Sitemap: https://prospeccaoia.com.br/sitemap.xml

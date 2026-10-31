@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 308 56" width="308" height="56">
+ <defs>
+ <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+ <stop offset="0%" style="stop-color:#FF902F;stop-opacity:1" />
+ <stop offset="100%" style="stop-color:#723CEB;stop-opacity:1" />
+ </linearGradient>
+ </defs>
+ <!-- Ícone de lupa/alvo -->
+ <circle cx="28" cy="28" r="16" fill="none" stroke="url(#grad)" stroke-width="3"/>
+ <line x1="40" y1="40" x2="50" y2="50" stroke="url(#grad)" stroke-width="3" stroke-linecap="round"/>
+ <circle cx="28" cy="28" r="5" fill="url(#grad)"/>
+ <!-- Pontos de IA ao redor -->
+ <circle cx="28" cy="8" r="2" fill="#723CEB"/>
+ <circle cx="48" cy="28" r="2" fill="#723CEB"/>
+ <circle cx="28" cy="48" r="2" fill="#FF902F"/>
+ <circle cx="8" cy="28" r="2" fill="#FF902F"/>
+ <!-- Texto -->
+ <text x="70" y="38" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="bold" fill="url(#grad)" text-anchor="start">Prospecção IA</text>
+</svg>
