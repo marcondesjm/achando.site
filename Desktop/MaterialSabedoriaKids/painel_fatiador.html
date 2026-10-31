@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fatiador Pro - Formato Instagram 4:5</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+<style>
+:root { --primary: #E1306C; --bg: #f8f9fa; }
+body { font-family: system-ui, sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; background: var(--bg); color: #333; }
+h1 { text-align: center; color: var(--primary); margin-bottom: 5px; }
+.subtitle { text-align: center; color: #666; margin-bottom: 25px; font-size: 0.9rem; }
+.card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 20px; }
+.drop-zone { border: 2px dashed #ccc; border-radius: 8px; padding: 40px; text-align: center; cursor: pointer; transition: all 0.2s; background: #fafafa; }
+.drop-zone:hover, .drop-zone.dragover { border-color: var(--primary); background: #fff0f5; }
+.controls { display: flex; gap: 15px; justify-content: center; align-items: flex-end; margin-bottom: 20px; flex-wrap: wrap; }
+.control-group label { display: block; font-size: 0.8rem; font-weight: bold; margin-bottom: 5px; color: #555; }
+input[type="number"], select { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; text-align: center; font-size: 1rem; }
+.preview-wrapper { position: relative; margin: 20px auto; border: 1px solid #eee; border-radius: 8px; overflow: hidden; display: inline-block; max-width: 100%; background: #fff; }
+canvas { display: block; max-width: 100%; height: auto; }
+.cut-line { position: absolute; background: #ff0066; opacity: 0.9; pointer-events: all; cursor: ns-resize; z-index: 10; }
+.cut-line.h { left: 0; right: 0; height: 3px; }
+.cut-line:hover { background: #ff0000; height: 5px; }
+.cut-handle { position: absolute; width: 24px; height: 24px; background: #ff0066; border: 3px solid white; border-radius: 50%; left: 50%; transform: translateX(-50%); top: -11px; cursor: ns-resize; z-index: 11; box-shadow: 0 2px 6px rgba(0,0,0,0.3); }
+.piece-num { position: absolute; background: rgba(225, 48, 108, 0.95); color: white; padding: 4px 8px; border-radius: 6px; font-size: 13px; font-weight: bold; left: 10px; z-index: 5; }
+.info-bar { text-align: center; font-size: 0.9rem; color: #666; margin-bottom: 15px; padding: 10px; background: #f0f0f0; border-radius: 6px; }
+.dim-info { text-align: center; font-size: 0.85rem; color: #888; margin-top: 10px; }
+.status { text-align: center; font-weight: bold; min-height: 24px; margin-top: 15px; }
+.status.success { color: #2e7d32; }
+.status.error { color: #d32f2f; }
+button.primary { background: var(--primary); color: white; border: none; padding: 14px 30px; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; display: block; margin: 0 auto; transition: all 0.2s; }
+button.primary:hover:not(:disabled) { transform: translateY(-2px); filter: brightness(0.9); box-shadow: 0 4px 12px rgba(225,48,108,0.4); }
+button.primary:disabled { background: #ccc; cursor: not-allowed; }
+.mode-selector { margin-bottom: 20px; padding: 15px; background: #fff8fa; border-radius: 8px; border: 1px solid #ffd6e7; }
+.mode-selector label { display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 0.95rem; margin: 8px 0; }
+.mode-selector input { accent-color: var(--primary); width: 18px; height: 18px; }
+.mode-selector strong { display: block; margin-bottom: 10px; color: var(--primary); }
+.content-zones { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 15px 0; }
+.zone-btn { padding: 10px; border: 2px solid #ddd; background: white; border-radius: 8px; cursor: pointer; font-size: 0.9rem; transition: all 0.2s; text-align: center; }
+.zone-btn:hover { border-color: var(--primary); }
+.zone-btn.active { border-color: var(--primary); background: var(--primary); color: white; }
+.zone-btn strong { display: block; font-size: 0.95rem; }
+.help-text { font-size: 0.85rem; color: #666; margin-top: 10px; padding: 10px; background: #f5f5f5; border-radius: 6px; }
+</style>
+</head>
+<body>
+<h1>✂️ Fatiador Pro - Formato 4:5</h1>
+<p class="subtitle">Cortes verticais perfeitos 1080×1350px para Instagram Feed</p>
+<div class="card">
+<div class="drop-zone" id="dropZone">
+<p> Arraste a imagem aqui ou clique para escolher</p>
+<input type="file" id="fileInput" accept="image/*" style="display:none">
+</div>
+<div class="info-bar" id="infoBar">Nenhuma imagem carregada</div>
+<div class="mode-selector" id="modeBox" style="display:none">
+<strong>⚙️ Modo de Corte:</strong>
+<label>
+<input type="radio" name="cutMode" value="manual" checked>
+<div>
+<strong>Ajuste Manual Visual (Recomendado)</strong>
+<small>Você arrasta as linhas vermelhas para posicionar os cortes exatamente onde quiser</small>
+</div>
+</label>
+<label>
+<input type="radio" name="cutMode" value="equal">
+<div>
+<strong>Divisão Igual</strong>
+<small>Divide a imagem em partes exatamente iguais automaticamente</small>
+</div>
+</label>
+</div>
+<div class="content-zones" id="zoneSelector" style="display:none">
+<button class="zone-btn active" data-zones="3"><strong> 3 Slides</strong></button>
+<button class="zone-btn" data-zones="4"><strong>📱 4 Slides</strong></button>
+<button class="zone-btn" data-zones="5"><strong>📱 5 Slides</strong></button>
+<button class="zone-btn" data-zones="6"><strong>📱 6 Slides</strong></button>
+</div>
+<div class="controls">
+<div class="control-group">
+<label>Largura (px)</label>
+<input type="number" id="slideWidth" value="1080" min="600" max="1080" step="10" readonly>
+</div>
+<div class="control-group">
+<label>Altura (px)</label>
+<input type="number" id="slideHeight" value="1350" min="600" max="1350" step="10" readonly>
+</div>
+</div>
+<button class="primary" id="processBtn" disabled>📥 Baixar ZIP (Formato 4:5)</button>
+<div class="status" id="status"></div>
+</div>
+<div class="card" style="text-align:center">
+<div class="preview-wrapper" id="previewWrap">
+<canvas id="canvas"></canvas>
+<div id="cutLines"></div>
+</div>
+<div class="dim-info" id="dimInfo"></div>
+<div class="help-text" id="helpText">
+💡 <strong>Dica:</strong> Arraste as linhas vermelhas com os círculos brancos para ajustar exatamente onde cada corte deve ficar. Formato vertical 4:5 (1080×1350px) otimizado para Instagram!
+</div>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+let img = null, fileName = 'imagem', cutMode = 'manual', numZones = 3, cutPositions = [];
+// Formato Instagram 4:5
+const SLIDE_WIDTH = 1080;
+const SLIDE_HEIGHT = 1350;
+const ASPECT_RATIO = SLIDE_WIDTH / SLIDE_HEIGHT; // 0.8 (4:5)
+// Zone selector
+$('zoneSelector').onclick = e => {
+const btn = e.target.closest('.zone-btn');
+if(!btn) return;
+document.querySelectorAll('.zone-btn').forEach(b => b.classList.remove('active'));
+btn.classList.add('active');
+numZones = parseInt(btn.dataset.zones);
+updatePreview();
+};
+// Mode change
+document.querySelectorAll('input[name="cutMode"]').forEach(r => {
+r.addEventListener('change', () => {
+cutMode = r.value;
+$('helpText').innerHTML = cutMode === 'manual'
+? ' <strong>Modo Manual:</strong> Arraste as linhas vermelhas para posicionar os cortes onde quiser.'
+: '💡 <strong>Modo Igual:</strong> Divide a imagem em partes exatamente iguais.';
+updatePreview();
+});
+});
+// File handling
+$('dropZone').onclick = () => $('fileInput').click();
+$('dropZone').ondragover = e => { e.preventDefault(); $('dropZone').classList.add('dragover'); };
+$('dropZone').ondragleave = () => $('dropZone').classList.remove('dragover');
+$('dropZone').ondrop = e => {
+e.preventDefault();
+$('dropZone').classList.remove('dragover');
+if(e.dataTransfer.files[0]) loadFile(e.dataTransfer.files[0]);
+};
+$('fileInput').onchange = e => { if(e.target.files[0]) loadFile(e.target.files[0]); };
+function loadFile(file) {
+if(!file.type.startsWith('image/')) {
+$('status').textContent='Selecione uma imagem válida.';
+$('status').className='status error';
+return;
+}
+fileName = file.name.replace(/\.[^/.]+$/, "");
+const reader = new FileReader();
+reader.onload = ev => {
+const image = new Image();
+image.onload = () => {
+img = image;
+$('modeBox').style.display = 'block';
+$('zoneSelector').style.display = 'grid';
+$('infoBar').textContent = `📐 Original: ${img.width}×${img.height}px | Formato: 4:5 (1080×1350px)`;
+cutPositions = []; // Reset positions for new image
+$('processBtn').disabled = false;
+updatePreview();
+};
+image.src = ev.target.result;
+};
+reader.readAsDataURL(file);
+}
+function updatePreview() {
+if(!img) return;
+const scale = Math.min(1, 500 / SLIDE_WIDTH);
+const displayWidth = SLIDE_WIDTH * scale;
+const displayHeight = SLIDE_HEIGHT * scale;
+$('canvas').width = displayWidth;
+$('canvas').height = displayHeight * numZones;
+$('previewWrap').style.width = displayWidth + 'px';
+$('previewWrap').style.height = (displayHeight * numZones) + 'px';
+const ctx = $('canvas').getContext('2d');
+ctx.clearRect(0, 0, $('canvas').width, $('canvas').height);
+// Calcular crop para manter aspect ratio 4:5
+const sourceAspect = img.width / img.height;
+let sourceX = 0, sourceY = 0, sourceW = img.width, sourceH = img.height;
+if(sourceAspect > ASPECT_RATIO) {
+// Imagem mais larga que 4:5 - crop lateral
+sourceW = img.height * ASPECT_RATIO;
+sourceX = (img.width - sourceW) / 2;
+} else {
+// Imagem mais alta que 4:5 - crop vertical
+sourceH = img.width / ASPECT_RATIO;
+sourceY = (img.height - sourceH) / 2;
+}
+// Desenhar cada slide empilhado verticalmente
+for(let i = 0; i < numZones; i++) {
+const yPos = i * displayHeight;
+ctx.drawImage(img,
+sourceX, sourceY, sourceW, sourceH,
+0, yPos, displayWidth, displayHeight
+);
+}
+// Inicializar posições de corte
+if(cutPositions.length === 0 || cutPositions.length !== numZones - 1) {
+cutPositions = [];
+for(let i = 1; i < numZones; i++) {
+cutPositions.push(displayHeight * i);
+}
+}
+// Desenhar linhas de corte
+const cutLines = $('cutLines');
+cutLines.innerHTML = '';
+cutPositions.forEach((pos, idx) => {
+const line = document.createElement('div');
+line.className = 'cut-line h';
+line.style.top = (pos - 2) + 'px';
+if(cutMode === 'manual') {
+line.dataset.index = idx;
+line.onmousedown = initDrag;
+const handle = document.createElement('div');
+handle.className = 'cut-handle';
+line.appendChild(handle);
+}
+cutLines.appendChild(line);
+const num = document.createElement('div');
+num.className = 'piece-num';
+num.textContent = idx + 1;
+num.style.top = (idx === 0 ? 10 : cutPositions[idx-1] + 10) + 'px';
+cutLines.appendChild(num);
+});
+const lastNum = document.createElement('div');
+lastNum.className = 'piece-num';
+lastNum.textContent = numZones;
+lastNum.style.top = (cutPositions[cutPositions.length-1] + 10) + 'px';
+cutLines.appendChild(lastNum);
+$('dimInfo').textContent = `📱 ${numZones} slides | Cada um: ${SLIDE_WIDTH}×${SLIDE_HEIGHT}px (4:5) | Total: ${SLIDE_HEIGHT * numZones}px de altura`;
+}
+// Drag manual
+let dragging = null;
+function initDrag(e) {
+if(cutMode !== 'manual') return;
+dragging = parseInt(e.target.closest('.cut-line').dataset.index);
+e.preventDefault();
+}
+document.addEventListener('mousemove', e => {
+if(dragging === null) return;
+const rect = $('canvas').getBoundingClientRect();
+const y = e.clientY - rect.top;
+const minGap = 150;
+let newPos = y;
+if(dragging > 0 && newPos < cutPositions[dragging-1] + minGap)
+newPos = cutPositions[dragging-1] + minGap;
+if(dragging < cutPositions.length - 1 && newPos > cutPositions[dragging+1] - minGap)
+newPos = cutPositions[dragging+1] - minGap;
+cutPositions[dragging] = newPos;
+updateCutLines();
+});
+document.addEventListener('mouseup', () => {
+dragging = null;
+});
+function updateCutLines() {
+const cutLines = $('cutLines');
+cutLines.innerHTML = '';
+cutPositions.forEach((pos, idx) => {
+const line = document.createElement('div');
+line.className = 'cut-line h';
+line.style.top = (pos - 2) + 'px';
+if(cutMode === 'manual') {
+line.dataset.index = idx;
+line.onmousedown = initDrag;
+const handle = document.createElement('div');
+handle.className = 'cut-handle';
+line.appendChild(handle);
+}
+cutLines.appendChild(line);
+const num = document.createElement('div');
+num.className = 'piece-num';
+num.textContent = idx + 1;
+num.style.top = (idx === 0 ? 10 : cutPositions[idx-1] + 10) + 'px';
+cutLines.appendChild(num);
+});
+const lastNum = document.createElement('div');
+lastNum.className = 'piece-num';
+lastNum.textContent = numZones;
+lastNum.style.top = (cutPositions[cutPositions.length-1] + 10) + 'px';
+cutLines.appendChild(lastNum);
+}
+// Processar e baixar
+$('processBtn').onclick = async () => {
+if(!img) return;
+$('status').textContent='️ Processando imagem...';
+$('status').className='status';
+$('processBtn').disabled=true;
+const zip = new JSZip();
+const folder = zip.folder(fileName);
+// Calcular crop para manter aspect ratio 4:5
+const sourceAspect = img.width / img.height;
+let sourceX = 0, sourceY = 0, sourceW = img.width, sourceH = img.height;
+if(sourceAspect > ASPECT_RATIO) {
+sourceW = img.height * ASPECT_RATIO;
+sourceX = (img.width - sourceW) / 2;
+} else {
+sourceH = img.width / ASPECT_RATIO;
+sourceY = (img.height - sourceH) / 2;
+}
+// Criar canvas temporário com todos os slides empilhados
+const fullCanvas = document.createElement('canvas');
+fullCanvas.width = SLIDE_WIDTH;
+fullCanvas.height = SLIDE_HEIGHT * numZones;
+const fullCtx = fullCanvas.getContext('2d');
+for(let i = 0; i < numZones; i++) {
+const yPos = i * SLIDE_HEIGHT;
+fullCtx.drawImage(img,
+sourceX, sourceY, sourceW, sourceH,
+0, yPos, SLIDE_WIDTH, SLIDE_HEIGHT
+);
+}
+// Converter posições de display para resolução real
+const scale = Math.min(1, 500 / SLIDE_WIDTH);
+const displayHeight = SLIDE_HEIGHT * scale;
+const positions = cutPositions.map(p => Math.round(p * (SLIDE_HEIGHT * numZones) / (displayHeight * numZones)));
+// Gerar cada slide
+for(let i = 0; i < numZones; i++) {
+const slideCanvas = document.createElement('canvas');
+slideCanvas.width = SLIDE_WIDTH;
+slideCanvas.height = SLIDE_HEIGHT;
+const slideCtx = slideCanvas.getContext('2d');
+const startY = i === 0 ? 0 : positions[i-1];
+const endY = i === numZones - 1 ? SLIDE_HEIGHT * numZones : positions[i];
+const sliceHeight = endY - startY;
+// Calcular offset para centralizar verticalmente
+const offsetY = (SLIDE_HEIGHT - sliceHeight) / 2;
+slideCtx.drawImage(fullCanvas,
+0, startY, SLIDE_WIDTH, sliceHeight,
+0, offsetY, SLIDE_WIDTH, sliceHeight
+);
+const blob = await new Promise(res => slideCanvas.toBlob(res, 'image/png', 1.0));
+folder.file(`${fileName}_slide_${i+1}.png`, blob);
+}
+$('status').textContent='📦 Gerando ZIP...';
+const content = await zip.generateAsync({type:'blob'});
+saveAs(content, `${fileName}_carrossel_${numZones}slides_4-5.zip`);
+$('status').textContent=`✅ Pronto! ${numZones} slides verticais (4:5) baixados.`;
+$('status').className='status success';
+$('processBtn').disabled=false;
+};
+</script>
+</body>
+</html>
