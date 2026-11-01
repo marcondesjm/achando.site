@@ -2,9 +2,10 @@
 RewriteEngine On
 RewriteBase /
 
-# Redirecionar app.achando.site para o app na Vercel
+# Servir o app localmente na pasta /app/ quando acessar app.achando.site
 RewriteCond %{HTTP_HOST} ^app\.achando\.site$ [NC]
-RewriteRule ^(.*)$ https://prospeccao-ia-br.vercel.app/$1 [L,R=301]
+RewriteCond %{REQUEST_URI} !^/app/
+RewriteRule ^(.*)$ /app/$1 [L]
 
 # Redirecionar /termos para termos.html sem mudar a URL
 RewriteCond %{REQUEST_FILENAME} !-f
