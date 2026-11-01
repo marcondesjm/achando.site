@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Termos de Uso · Achando.Site</title>
+<meta name="description" content="As regras de uso do Achando.Site: planos, pagamento, cancelamento, reembolso e responsabilidades.">
+<meta name="theme-color" content="#131313">
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="termos.html">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="assets/satoshi-light.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/manrope-regular.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Satoshi";src:url("assets/satoshi-light.woff2") format("woff2");font-weight:300;font-display:swap}
+@font-face{font-family:"Manrope";src:url("assets/manrope-regular.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Manrope";src:url("assets/manrope-semibold.woff2") format("woff2");font-weight:600;font-display:swap}
+
+/* Tokens do design do Achando.Site v4. */
+:root{
+  --bg:#131313; --surface:#1B1B1B; --surface-2:#232323;
+  --border:#2E2E2E; --border-2:#3A3A3A; --border-strong:#454545;
+  --text:#FFFFFF; --text-2:#B4B4B7; --text-3:#8E8E94; --text-4:#7E7E84;
+  --purple:#723CEB; --purple-text:#9A79F1;
+  --radius-lg:18px;
+  --font-display:"Satoshi",ui-sans-serif,system-ui,sans-serif;
+  --font-ui:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --text-h1:clamp(32px,2.9vw + 12px,44px); --text-h3:clamp(19px,1.2vw + 12px,24px);
+  --text-body:16px; --text-body-sm:14px; --text-meta:13px;
+}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:var(--font-ui);font-size:var(--text-body);line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--purple);outline-offset:2px}
+
+.wrap{width:100%;max-width:760px;margin:0 auto;padding:0 16px}
+@media (min-width:640px){.wrap{padding:0 32px}}
+
+header{padding:24px 0 40px}
+.logo{display:block;height:28px;width:auto}
+
+main{flex:1;padding-bottom:64px}
+article{max-width:68ch;color:var(--text-2);line-height:1.55}
+h1{font-family:var(--font-display);font-weight:300;font-size:var(--text-h1);line-height:1.1;letter-spacing:-.02em;color:var(--text)}
+h2{font-family:var(--font-display);font-weight:300;font-size:var(--text-h3);line-height:1.2;color:var(--text);margin-top:48px}
+p{margin-top:16px}
+p.meta{margin-top:12px;font-size:var(--text-meta);color:var(--text-3)}
+strong{font-weight:600;color:var(--text)}
+article a{color:var(--purple-text);text-underline-offset:4px;text-decoration-color:var(--border-strong)}
+article a:hover{text-decoration-color:var(--purple-text)}
+ul{margin-top:16px;padding-left:20px;display:grid;gap:8px}
+li{padding-left:4px}
+li::marker{color:var(--text-4)}
+
+.table{margin-top:20px;overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius-lg)}
+table{width:100%;min-width:480px;border-collapse:collapse;text-align:left;font-size:var(--text-body-sm);line-height:1.45}
+thead{background:var(--surface-2)}
+th{padding:12px 16px;font-weight:600;color:var(--text)}
+td{padding:12px 16px;vertical-align:top;border-top:1px solid var(--border)}
+
+footer{border-top:1px solid var(--border);padding:24px 0;font-size:var(--text-meta);color:var(--text-3)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px}
+footer a{text-decoration:none}
+footer a:hover{color:var(--text-2);text-decoration:underline;text-underline-offset:4px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a href="index.html" aria-label="Achando.Site, página inicial"><img class="logo" src="/assets/achandosite.webp" alt="Achando.Site" width="155" height="28"></a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <article>
+<h1>Termos de Uso</h1>
+<p class="meta">Última atualização: 2 de outubro de 2026</p>
+<h2>1. Quem somos e aceite destes termos</h2>
+<p>O Achando.Site é um serviço do MJM Digital, aqui chamado de "Achando.Site" ou "nós". Contato: <strong><a href="mailto:contato.achandosite@gmail.com">contato.achandosite@gmail.com</a></strong>.</p>
+<p>Ao criar uma conta ou usar o Achando.Site, você declara que leu e concorda com estes Termos de Uso e com a Política de Privacidade. Se você usa o Achando.Site em nome de uma empresa, declara que tem poderes para aceitá-los em nome dela.</p>
+<p>O Achando.Site é destinado a maiores de 18 anos.</p>
+<h2>2. O que é o Achando.Site</h2>
+<p>O Achando.Site é uma ferramenta de prospecção comercial vendida por assinatura. Ele encontra empresas por segmento e cidade, a partir de informações públicas disponíveis na internet, e organiza essas empresas num CRM para você acompanhar o contato com cada uma.</p>
+<p>O Achando.Site entrega informações comerciais públicas, como nome, endereço, telefone comercial, site e avaliações. Nós não garantimos que cada informação esteja atualizada ou correta, nem que a empresa encontrada vai comprar de você. O resultado comercial depende do seu trabalho.</p>
+<h2>3. Cadastro, conta, agências e equipe</h2>
+<ul>
+  <li>Você se cadastra com e-mail e senha ou com a sua conta Google. As informações do cadastro precisam ser verdadeiras.</li>
+  <li>Você é responsável pela sua senha e por tudo o que for feito com a sua conta. Se suspeitar de uso indevido, troque a senha e nos avise.</li>
+  <li>Uma conta pode ter uma ou mais agências e pessoas convidadas, conforme o limite do plano. O dono da conta responde pelo que as pessoas convidadas fazem nela.</li>
+  <li>Para proteger o serviço, usamos verificações automáticas contra robôs no cadastro e no login.</li>
+  <li>Quem nunca assinou um plano, ou teve a assinatura encerrada, pode consultar o que já está na conta, mas não pode buscar empresas nem editar o CRM.</li>
+</ul>
+<h2>4. Planos, pagamento, renovação e créditos</h2>
+<p>Os planos são mensais, cobrados no cartão de crédito pela Stripe. Nós não guardamos os dados do seu cartão.</p>
+<div class="table" role="region" aria-label="Tabela" tabindex="0"><table>
+<thead><tr><th scope="col">Plano</th><th scope="col">Preço por mês</th><th scope="col">Empresas por mês</th><th scope="col">Agências</th><th scope="col">Pessoas</th></tr></thead>
+<tbody>
+<tr><td>Inicial</td><td>R$ 47</td><td>200</td><td>1</td><td>1</td></tr>
+<tr><td>Profissional</td><td>R$ 97</td><td>700</td><td>1</td><td>1</td></tr>
+<tr><td>Agência</td><td>R$ 197</td><td>1.500</td><td>3</td><td>3</td></tr>
+</tbody></table></div>
+<ul>
+  <li><strong>Renovação:</strong> a assinatura renova sozinha todo mês, no mesmo dia, até você cancelar.</li>
+  <li><strong>Saldo do mês:</strong> só é descontada a empresa nova que entra no seu CRM. Empresa que você já tinha não consome saldo. O saldo não usado não passa para o mês seguinte.</li>
+  <li><strong>Créditos extras:</strong> pacotes avulsos de 200 empresas por R$ 29, pagos uma vez, sem renovação.</li>
+  <li><strong>Pagamento recusado:</strong> você tem 7 dias para regularizar, com aviso na tela. Depois disso, a conta fica só leitura até o pagamento.</li>
+  <li><strong>Mudança de preço:</strong> avisamos por e-mail com pelo menos 30 dias de antecedência. O preço novo vale a partir da renovação seguinte ao aviso.</li>
+</ul>
+<h2>5. Cancelamento, arrependimento e reembolso</h2>
+<p><strong>Garantia de 7 dias (direito de arrependimento).</strong> Na sua primeira assinatura, você pode desistir em até 7 dias da contratação e recebe de volta o valor integral pago, como garante o art. 49 do Código de Defesa do Consumidor.</p>
+<p><strong>Depois dos 7 dias, e nas renovações.</strong> Você pode cancelar quando quiser, pela página Plano. O reembolso é proporcional ao saldo de empresas do mês que você ainda não usou.</p>
+<ul>
+  <li>Depois do cancelamento, o CRM continua funcionando normalmente até o fim do período já pago. Em seguida, a conta fica só leitura: você continua vendo as suas empresas, mas não busca nem edita.</li>
+  <li>Créditos extras já usados não são reembolsados.</li>
+  <li>O reembolso volta para o mesmo cartão usado no pagamento. O prazo para aparecer na fatura depende do banco emissor.</li>
+</ul>
+<h2>6. Uso permitido e proibido</h2>
+<p>Você pode usar o Achando.Site para prospectar clientes para o seu próprio negócio ou para os clientes da sua agência. Não é permitido:</p>
+<ul>
+  <li>revender, alugar ou repassar a terceiros as listas de empresas obtidas, em massa, como produto;</li>
+  <li>enviar spam, mensagens em massa não solicitadas ou qualquer comunicação que viole as regras do WhatsApp, de outras plataformas ou da lei;</li>
+  <li>usar os dados para fraude, assédio, discriminação ou qualquer finalidade ilegal;</li>
+  <li>tentar burlar limites de plano, criar contas falsas ou usar robôs para acessar o Achando.Site;</li>
+  <li>tentar invadir, copiar, desmontar ou sobrecarregar o sistema.</li>
+</ul>
+<p>Se identificarmos uso proibido, podemos suspender ou encerrar a conta, sem reembolso do período em que houve a violação.</p>
+<h2>7. Dados das empresas e a sua responsabilidade</h2>
+<p>As empresas que o Achando.Site encontra são negócios com informações comerciais publicadas na internet. Algumas podem ser pessoas físicas que trabalham por conta própria (como MEI), e aí a Lei Geral de Proteção de Dados (LGPD) se aplica.</p>
+<p>Ao usar essas informações para entrar em contato, você se compromete a:</p>
+<ul>
+  <li>falar com a empresa sobre um assunto comercial relacionado ao negócio dela;</li>
+  <li>se identificar e dizer como obteve o contato, se a pessoa perguntar;</li>
+  <li>parar de enviar mensagens a quem pedir para não ser mais contatado;</li>
+  <li>excluir a empresa do seu CRM quando ela pedir.</li>
+</ul>
+<p>Quem receber um contato pode pedir a exclusão dos seus dados pelo e-mail <a href="mailto:contato.achandosite@gmail.com">contato.achandosite@gmail.com</a>. A partir do pedido, o Achando.Site deixa de entregar essa empresa nas buscas de todos os clientes.</p>
+<p>Você é o responsável pelas mensagens que envia e pelo uso que faz das informações. O Achando.Site não envia mensagens em seu nome.</p>
+<h2>8. Disponibilidade, responsabilidade e suspensão</h2>
+<ul>
+  <li>Trabalhamos para o Achando.Site ficar no ar o tempo todo, mas podem acontecer paradas para manutenção ou falhas de fornecedores. Quando uma busca falha, o saldo reservado volta para a sua conta.</li>
+  <li>As buscas dependem de informações de terceiros. A quantidade de empresas encontradas pode ser menor que a pedida, por exemplo numa cidade pequena. Você só paga pelas empresas novas entregues.</li>
+  <li>Na máxima extensão permitida pela lei, a nossa responsabilidade fica limitada ao valor que você pagou nos últimos 3 meses. Não respondemos por lucros que deixaram de ser obtidos nem por negócios que não se concretizaram.</li>
+  <li>Podemos suspender a conta em caso de violação destes termos, de pagamento não regularizado ou por ordem de autoridade. Sempre que possível, avisamos antes por e-mail.</li>
+  <li>Você pode pedir a exportação e a exclusão dos seus dados a qualquer momento, como descrito na Política de Privacidade.</li>
+</ul>
+<h2>9. Alterações, foro e contato</h2>
+<ul>
+  <li>Podemos atualizar estes termos. Mudanças importantes são avisadas por e-mail com pelo menos 30 dias de antecedência. Continuar usando o Achando.Site depois disso significa aceitar a nova versão.</li>
+  <li>Estes termos seguem as leis do Brasil. Fica eleito o foro da comarca de São Paulo (SP), exceto quando o cliente for consumidor pessoa física, que pode escolher o foro do seu próprio domicílio, como garante o Código de Defesa do Consumidor.</li>
+  <li>Dúvidas, pedidos e reclamações: <strong><a href="mailto:contato.achandosite@gmail.com">contato.achandosite@gmail.com</a></strong>. Respondemos em até 48 horas úteis.</li>
+  <li>Os contornos geográficos dos estados e municípios exibidos no Achando.Site têm como fonte o IBGE.</li>
+</ul>
+    </article>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Achando.Site</span>
+    <a href="termos.html">Termos de Uso</a>
+    <a href="privacidade.html">Política de Privacidade</a>
+  </div>
+</footer>
+
+</body>
+</html>
