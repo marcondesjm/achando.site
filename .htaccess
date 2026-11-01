@@ -2,9 +2,9 @@
 RewriteEngine On
 RewriteBase /
 
-# Servir prospeccao.htm quando acessar app.achando.site/
+# Redirecionar app.achando.site para a pasta /app/
 RewriteCond %{HTTP_HOST} ^app\.achando\.site$ [NC]
-RewriteRule ^$ app/prospeccao.htm [L]
+RewriteRule ^(.*)$ /app/$1 [L]
 
 # Redirecionar /termos para termos.html sem mudar a URL
 RewriteCond %{REQUEST_FILENAME} !-f
