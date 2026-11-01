@@ -1,13 +1,17 @@
-# Habilitar reescrita de URL
+# Habilitar o mecanismo de reescrita
 RewriteEngine On
 RewriteBase /
 
-# Redirecionar /termos para termos.html (mantém a URL limpa)
+# Redirecionar app.achando.site para o app na Vercel
+RewriteCond %{HTTP_HOST} ^app\.achando\.site$ [NC]
+RewriteRule ^(.*)$ https://prospeccao-ia-br.vercel.app/$1 [L,R=301]
+
+# Redirecionar /termos para termos.html sem mudar a URL
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^termos$ termos.html [L]
 
-# Redirecionar /privacidade para privacidade.html (mantém a URL limpa)
+# Redirecionar /privacidade para privacidade.html sem mudar a URL
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^privacidade$ privacidade.html [L]
