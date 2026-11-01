@@ -1,17 +1,13 @@
-# Habilitar o mecanismo de reescrita
+# Habilitar reescrita de URL
 RewriteEngine On
 RewriteBase /
 
-# Forçar HTTPS (opcional, mas recomendado)
-# RewriteCond %{HTTPS} off
-# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-# Redirecionar /termos para termos.html sem mudar a URL visível
+# Redirecionar /termos para termos.html (mantém a URL limpa)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^termos/?$ termos.html [L]
+RewriteRule ^termos$ termos.html [L]
 
-# Redirecionar /privacidade para privacidade.html sem mudar a URL visível
+# Redirecionar /privacidade para privacidade.html (mantém a URL limpa)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^privacidade/?$ privacidade.html [L]
+RewriteRule ^privacidade$ privacidade.html [L]
