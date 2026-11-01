@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Achando.Site | Empresas sem site no Google Maps</title>
+<meta name="description" content="Encontre empresas sem site no Google Maps por nicho e cidade. Veja o motivo da oportunidade, revise a mensagem e organize o retorno. Planos a partir de R$ 47 por mês.">
+<link rel="canonical" href="index.html">
+<meta name="theme-color" content="#0f172a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Achando.Site | Empresas sem site no Google Maps">
+<meta property="og:description" content="Encontre empresas sem site no Google Maps por nicho e cidade.">
+<meta property="og:image" content="assets/achando-site.webp">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo do Achando.Site">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+  :root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --border: #334155;
+    --text: #f1f5f9;
+    --text-muted: #94a3b8;
+    --purple: #8b5cf6;
+    --purple-dark: #7c3aed;
+    --green: #10b981;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  header {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text);
+  }
+  .logo img { height: 40px; }
+  .logo-text { font-size: 1.5rem; font-weight: 700; }
+  nav { display: flex; gap: 24px; align-items: center; }
+  nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--text); }
+  .btn-primary {
+    background: var(--purple);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--purple-dark); }
+
+  /* Hero */
+  .hero {
+    padding: 80px 0 60px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+  .hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 32px;
+  }
+  .hero-image-placeholder {
+    width: 100%;
+    max-width: 800px;
+    height: 400px;
+    margin: 40px auto;
+    background: linear-gradient(135deg, var(--surface) 0%, var(--border) 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    border: 2px dashed var(--border);
+  }
+  .video-placeholder {
+    width: 100%;
+    max-width: 800px;
+    height: 450px;
+    margin: 40px auto;
+    background: var(--surface);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    border: 2px dashed var(--border);
+  }
+
+  /* Method Section */
+  .method {
+    padding: 60px 0;
+  }
+  .method-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+  }
+  .dm__nav {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+  .dm__navbtn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s;
+  }
+  .dm__navbtn:hover {
+    background: var(--border);
+    color: var(--text);
+  }
+  .dm__navbtn.dm__navbtn--on {
+    background: var(--purple);
+    border-color: var(--purple);
+    color: white;
+  }
+  .dm__scene {
+    display: none;
+    padding: 32px;
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+  }
+  .dm__scene.dm__scene--on {
+    display: block;
+  }
+  .dm__scene h3 {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+    color: var(--purple);
+  }
+  .dm__scene p {
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  /* Pricing */
+  .pricing {
+    padding: 60px 0;
+  }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .pricing-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+  }
+  .pricing-card.featured {
+    border-color: var(--purple);
+    position: relative;
+  }
+  .pricing-card.featured::before {
+    content: 'Popular';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--purple);
+    color: white;
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .price {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 16px 0;
+  }
+  .price span {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  /* Footer */
+  footer {
+    padding: 40px 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+</style>
+</head>
+<body>
+<header>
+<div class="container header-inner">
+<a href="/" class="logo">
+<img src="assets/achando-site.svg" alt="Achando.Site">
+<span class="logo-text">Achando.Site</span>
+</a>
+<nav>
+<a href="#metodo">Como funciona</a>
+<a href="#precos">Preços</a>
+<a href="#" class="btn-primary">Começar agora</a>
+</nav>
+</div>
+</header>
+
+<main>
+<section class="hero">
+<div class="container">
+<h1>Encontre empresas sem site no Google Maps</h1>
+<p>Descubra oportunidades de venda em qualquer nicho e cidade. Organize sua prospecção com dados reais.</p>
+<a href="#" class="btn-primary" style="display:inline-block;font-size:1.1rem;padding:14px 32px;">Explorar agora</a>
+<div class="hero-image-placeholder" style="background:none;border:none;padding:0;">
+<img src="assets/achando-site.svg" alt="Achando.Site - Encontre empresas sem site" style="max-width:100%;border-radius:16px;display:block;margin:0 auto;">
+</div>
+</div>
+</section>
+
+<section class="method" id="metodo">
+<div class="container">
+<h2 class="method-title">Como funciona</h2>
+<div class="dm__nav" role="tablist">
+<button class="dm__navbtn dm__navbtn--on" role="tab" aria-selected="true" tabindex="0">Encontrar</button>
+<button class="dm__navbtn" role="tab" aria-selected="false" tabindex="-1">Priorizar</button>
+<button class="dm__navbtn" role="tab" aria-selected="false" tabindex="-1">Entender</button>
+<button class="dm__navbtn" role="tab" aria-selected="false" tabindex="-1">Abordar</button>
+</div>
+<div class="dm__scene dm__scene--on">
+<h3>Encontrar</h3>
+<p>Digite um nicho e uma cidade. O sistema varre o Google Maps e lista empresas sem site oficial.</p>
+<p>Você vê nome, endereço, telefone e categoria de cada oportunidade.</p>
+</div>
+<div class="dm__scene">
+<h3>Priorizar</h3>
+<p>Filtre por faturamento estimado, número de funcionários ou avaliações no Google.</p>
+<p>Identifique as empresas com maior potencial de conversão.</p>
+</div>
+<div class="dm__scene">
+<h3>Entender</h3>
+<p>Analise o perfil completo da empresa: redes sociais, presença digital e pontos de melhoria.</p>
+<p>Gera um relatório pronto para usar na abordagem comercial.</p>
+</div>
+<div class="dm__scene">
+<h3>Abordar</h3>
+<p>Use modelos de mensagem personalizados prontos para enviar por WhatsApp ou e-mail.</p>
+<p>Acompanhe o status de cada contato e organize seu pipeline de vendas.</p>
+</div>
+</div>
+</section>
+
+<section class="pricing" id="precos">
+<div class="container">
+<h2 class="method-title">Planos e preços</h2>
+<div class="pricing-grid">
+<div class="pricing-card">
+<h3>Starter</h3>
+<div class="price">R$ 47<span>/mês</span></div>
+<p>Até 50 buscas por mês</p>
+<p>Exportação básica</p>
+<a href="#" class="btn-primary" style="display:block;margin-top:24px;">Assinar</a>
+</div>
+<div class="pricing-card featured">
+<h3>Professional</h3>
+<div class="price">R$ 97<span>/mês</span></div>
+<p>Buscas ilimitadas</p>
+<p>Exportação avançada + CRM</p>
+<p>Modelos de mensagem premium</p>
+<a href="#" class="btn-primary" style="display:block;margin-top:24px;">Assinar</a>
+</div>
+<div class="pricing-card">
+<h3>Enterprise</h3>
+<div class="price">R$ 197<span>/mês</span></div>
+<p>Tudo do Professional</p>
+<p>API dedicada</p>
+<p>Suporte prioritário</p>
+<a href="#" class="btn-primary" style="display:block;margin-top:24px;">Falar com vendas</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="container">
+<p>&copy; 2026 Achando.Site. Todos os direitos reservados.</p>
+</div>
+</footer>
+
+<script>
+// Lógica das abas Encontrar/Priorizar/Entender/Abordar
+const navButtons = document.querySelectorAll('.dm__navbtn');
+const scenes = document.querySelectorAll('.dm__scene');
+
+navButtons.forEach((btn, index) => {
+  btn.addEventListener('click', () => {
+    navButtons.forEach(b => {
+      b.classList.remove('dm__navbtn--on');
+      b.setAttribute('aria-selected', 'false');
+      b.tabIndex = -1;
+    });
+    scenes.forEach(s => s.classList.remove('dm__scene--on'));
+    btn.classList.add('dm__navbtn--on');
+    btn.setAttribute('aria-selected', 'true');
+    btn.tabIndex = 0;
+    if (scenes[index]) {
+      scenes[index].classList.add('dm__scene--on');
+    }
+  });
+});
+</script>
+</body>
+</html>
