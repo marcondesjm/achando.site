@@ -2,12 +2,16 @@
 RewriteEngine On
 RewriteBase /
 
-# Redirecionar /termos para termos.html sem mudar a URL
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^termos$ termos.html [L]
+# Forçar HTTPS (opcional, mas recomendado)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Redirecionar /privacidade para privacidade.html sem mudar a URL
+# Redirecionar /termos para termos.html sem mudar a URL visível
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^privacidade$ privacidade.html [L]
+RewriteRule ^termos/?$ termos.html [L]
+
+# Redirecionar /privacidade para privacidade.html sem mudar a URL visível
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^privacidade/?$ privacidade.html [L]
