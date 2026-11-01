@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: /previa/
+Allow: /
 
-Sitemap: https://prospeccaoia.com.br/sitemap.xml
+Sitemap: https://achando.site/sitemap.xml
