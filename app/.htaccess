@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /
+
+# Redirecionar /entrar para entrar.htm (mantém a URL limpa)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^entrar/?$ entrar.htm [L]
