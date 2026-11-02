@@ -1,28 +1,31 @@
-# Resumo do Projeto Achando.Site
+# Resumo do Projeto Achando.Site (Atualizado)
 
 ## Estado Atual (Última atualização: 2026-11-02)
 Todas as alterações foram commitadas e enviadas com sucesso para o repositório GitHub (`origin main`). O deploy automático na Hostinger deve refletir essas mudanças em alguns minutos.
 
-## Estrutura e Configurações Principais
+## Correções Realizadas Hoje
+1. **Links de Login/Cadastro**: 
+ - Botão "Entrar" no site principal redireciona para `https://app.achando.site/`.
+ - Botão "Teste grátis com 5 empresas" redireciona para `https://app.achando.site/cadastrar.htm`.
+ - Todas as referências antigas com parâmetros (`?next=%2Fhoje`) foram removidas dos arquivos `index.html` e `assets/pagina-v2.js`.
 
-### 1. Site Principal (`index.html`, `assets/pagina-v2.js`)
-- **Botão "Entrar"**: Redireciona para `https://app.achando.site/`
-- **Botão "Teste grátis com 5 empresas"**: Redireciona para `https://app.achando.site/cadastrar.htm`
+2. **Configuração do Subdomínio App (pasta `app/`)**:
+ - Arquivos presentes: `entrar.htm`, `prospeccao.htm`, `cadastrar.htm`, `index.html`, `.htaccess`.
+ - **`.htaccess` da pasta `app/`**: Redireciona internamente `/entrar` e `/entrar.htm` para a raiz `/` do subdomínio.
+ - **`.htaccess` da raiz**: Mantém as regras de redirecionamento para o subdomínio e URLs limpas do site principal (`/termos`, `/privacidade`).
 
-### 2. Subdomínio do App (pasta `app/`)
-- **Arquivos presentes**: `entrar.htm`, `prospeccao.htm`, `cadastrar.htm`, `index.html`, `.htaccess`
-- **`.htaccess` da pasta `app/`**: Redireciona internamente `/entrar` e `/entrar.htm` para a raiz `/` do subdomínio, mantendo a URL limpa no navegador.
-- **`.htaccess` da raiz do projeto**: 
-  - Redireciona requisições de `app.achando.site` e `app.achando.site.com.br` para a pasta `/app/`.
-  - Mantém URLs limpas para o site principal: `/termos` -> `termos.html` e `/privacidade` -> `privacidade.html`.
+## Guia: Banco de Dados na Hostinger
+- **Criação**: No hPanel, vá em Bancos de Dados > Gerenciamento > Criar novo.
+- **Conexão (PHP)**: Use PDO ou MySQLi. Nunca exponha credenciais em arquivos `.js` ou `.html`.
+- **Exemplo de Conexão (`conexao.php`)**:
+ ```php
+ $host = 'localhost';
+ $db = 'uXXX_banco';
+ $user = 'uXXX_usuario';
+ $pass = 'senha';
+ $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
+ ```
 
-### 3. Próximos Passos (Para continuar amanhã)
-1. Verificar no painel da Hostinger (hPanel) se o subdomínio `app.achando.site` está apontando corretamente para a pasta onde os arquivos do `app/` estão localizados (ou se o deploy automático do GitHub já sincronizou tudo).
-2. Testar os fluxos em uma janela anônima do navegador:
-   - Site principal -> Botão "Entrar" -> Deve ir para `https://app.achando.site/`
-   - Site principal -> Botão "Teste grátis" -> Deve ir para `https://app.achando.site/cadastrar.htm`
-   - App -> Tentar acessar `https://app.achando.site/entrar` -> Deve redirecionar automaticamente para `https://app.achando.site/`
-
-## Observações Importantes
-- O arquivo `app_upload.zip` foi gerado na raiz do projeto caso seja necessário fazer o upload manual dos arquivos do app via Gerenciador de Arquivos da Hostinger.
-- O arquivo de logo `assets/achandosite.webp` foi atualizado para ser visualmente idêntico ao `assets/achandosite.svg` (fundo escuro e texto branco/roxo).
+## Próximos Passos (Para continuar amanhã)
+1. **Backend de Cadastro**: Criar o script PHP para receber os dados do formulário `cadastrar.htm` e salvar no MySQL.
+2. **Testes**: Verificar em janela anônima se os links estão corretos após o deploy.
