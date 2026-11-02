@@ -2,6 +2,11 @@
 RewriteEngine On
 RewriteBase /
 
+# Redirecionar app.achando.site/entrar para app/entrar.htm (URL limpa)
+RewriteCond %{HTTP_HOST} ^app\.achando\.site$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^app\.achando\.site\.com\.br$ [NC]
+RewriteRule ^entrar/?$ /app/entrar.htm [L]
+
 # Redirecionar /termos para termos.html sem mudar a URL
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
