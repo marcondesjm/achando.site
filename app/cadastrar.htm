@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro - Prospecção IA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d2e;
+      --surface2: #232738;
+      --border: #2a2e42;
+      --text: #e8edf5;
+      --text2: #8b92ab;
+      --primary: #7c5cfc;
+      --primary-hover: #6a48e8;
+      --primary-glow: rgba(124,92,252,0.25);
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .auth-card {
+      width: min(100%, 480px);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    }
+    .auth-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+    .auth-brand .icon {
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), #a78bfa);
+      color: #fff;
+      font-size: 1.25rem;
+    }
+    h1 { font-size: 1.5rem; margin-bottom: 8px; }
+    .subtitle { color: var(--text2); font-size: 0.9rem; margin-bottom: 24px; line-height: 1.5; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block; font-size: 0.85rem; font-weight: 600;
+      margin-bottom: 6px; color: var(--text2);
+    }
+    .form-group input {
+      width: 100%; padding: 12px 14px;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); color: var(--text);
+      font-family: 'Inter', sans-serif; font-size: 0.9rem;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus { outline: none; border-color: var(--primary); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 12px 20px; border-radius: var(--radius-sm);
+      font-weight: 600; font-size: 0.9rem;
+      cursor: pointer; transition: all 0.2s;
+      border: none; font-family: 'Inter', sans-serif;
+    }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .btn-full { width: 100%; }
+    .benefits {
+      margin-top: 20px; padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .benefits h3 { font-size: 0.9rem; margin-bottom: 12px; color: var(--text); }
+    .benefits ul { list-style: none; }
+    .benefits li {
+      font-size: 0.82rem; color: var(--text2);
+      padding: 6px 0; padding-left: 20px; position: relative;
+    }
+    .benefits li::before {
+      content: '✓'; position: absolute; left: 0;
+      color: var(--success); font-weight: 700;
+    }
+    .login-link {
+      text-align: center; margin-top: 20px;
+      font-size: 0.85rem; color: var(--text2);
+    }
+    .login-link a { color: var(--primary); text-decoration: none; }
+    .login-link a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="auth-card">
+    <div class="auth-brand">
+      <div class="icon">IA</div>
+      <span>Prospecção IA</span>
+    </div>
+    <h1>Teste grátis com 5 empresas</h1>
+    <p class="subtitle">Cadastre-se agora e comece a prospectar leads qualificados sem custo inicial.</p>
+
+    <form id="cadastroForm" onsubmit="handleCadastro(event)">
+      <div class="form-group">
+        <label for="nome">Nome completo</label>
+        <input type="text" id="nome" required placeholder="Seu nome completo" />
+      </div>
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" required placeholder="seu@email.com" />
+      </div>
+      <div class="form-group">
+        <label for="whatsapp">WhatsApp</label>
+        <input type="tel" id="whatsapp" required placeholder="(48) 99999-9999" />
+      </div>
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" required placeholder="Crie uma senha forte" />
+      </div>
+      <button type="submit" class="btn btn-primary btn-full">Criar conta grátis</button>
+    </form>
+
+    <div class="benefits">
+      <h3>O que você recebe no teste grátis:</h3>
+      <ul>
+        <li>Acesso a 5 empresas qualificadas</li>
+        <li>Dados de contato verificados</li>
+        <li>CRM integrado para gestão</li>
+        <li>Suporte via WhatsApp</li>
+      </ul>
+    </div>
+
+    <div class="login-link">
+      Já tem uma conta? <a href="https://app.achando.site/entrar">Fazer login</a>
+    </div>
+  </div>
+
+  <script>
+    function handleCadastro(event) {
+      event.preventDefault();
+      const nome = document.getElementById('nome').value;
+      const email = document.getElementById('email').value;
+      const whatsapp = document.getElementById('whatsapp').value;
+      const senha = document.getElementById('senha').value;
+
+      // Salvar dados localmente (simulação)
+      const userData = { nome, email, whatsapp, plano: 'teste_gratis', createdAt: new Date().toISOString() };
+      localStorage.setItem('prospeccao_ia_user', JSON.stringify(userData));
+
+      // Redirecionar para o painel
+      alert('Cadastro realizado com sucesso! Você receberá 5 empresas em breve.');
+      window.location.href = 'https://app.achando.site/hoje';
+    }
+  </script>
+</body>
+</html>
