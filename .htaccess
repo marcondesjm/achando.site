@@ -5,7 +5,7 @@ RewriteBase /
 # Redirecionar /entrar e /entrar.htm para a raiz do subdomínio app
 RewriteCond %{HTTP_HOST} ^app\.achando\.site$ [NC,OR]
 RewriteCond %{HTTP_HOST} ^app\.achando\.site\.com\.br$ [NC]
-RewriteRule ^entrar(\.htm)?$ https://app.achando.site/ [R=301,L]
+RewriteRule ^entrar(\.htm)?$ / [R=301,L]
 
 # Redirecionar /termos para termos.html sem mudar a URL
 RewriteCond %{REQUEST_FILENAME} !-f
